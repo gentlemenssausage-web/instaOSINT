@@ -1,0 +1,7 @@
+flask
+flask-cors
+instagrapi
+requests
+python-whois
+dnspython
+gunicorn
