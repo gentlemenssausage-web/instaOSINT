@@ -526,11 +526,15 @@ async function runScan() {
   }, 2200);
 
   try {
-    const r = await fetch(`${API}/scan`, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({target})
-    });
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 1200000);
+const r = await fetch(`${API}/scan`, {
+  method: "POST",
+  headers: {"Content-Type":"application/json"},
+  body: JSON.stringify({target}),
+  signal: controller.signal
+});
+clearTimeout(timeout);
     const data = await r.json();
     clearInterval(interval);
     hideLoader();
