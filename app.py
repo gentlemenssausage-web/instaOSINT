@@ -10,7 +10,7 @@ from scraper import (
 )
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://gentlemenssausage-web.github.io", "*"])
 
 # Store creds in memory (set via /config)
 _config = {"ig_user": "", "ig_pass": ""}
